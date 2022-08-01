@@ -1,1 +1,1 @@
-# universal_face_detector
+# AnyFace: A Data-Centric Approach for Input-Agnostic Face Detection
