@@ -1,6 +1,6 @@
 # README
 
-# AnyFace: A Data-Centric Approach for Input-Agnostic Face Detection 
+# AnyFace: A Data-Centric Approach For Input-Agnostic Face Detection 
 <img src="https://github.com/IS2AI/AnyFace/blob/main/anyface_detections.png?raw=true">
 
 ## Installation requirements
