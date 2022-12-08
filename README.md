@@ -1,6 +1,7 @@
 # README
 
-# AnyFace
+# AnyFace: A Data-Centric Approach for Input-Agnostic Face Detection 
+<img src="https://github.com/IS2AI/AnyFace/blob/main/anyface_detections.png?raw=true">
 
 ## Installation requirements
 
@@ -120,7 +121,7 @@ Please note that we utilize augmentation procedure at the inference to get bette
 
 To visualize CNN layers of the model for a given input image, you can use `feature_vis` parameter in [yolov5-face/evaluate-selected-external.ipynb](yolov5-face/evaluate-selected-external.ipynb). By default feature maps of the C3 block are visualized. This can be changed in [yolov5-face/models/yolo.py](yolov5-face/models/yolo.py). Feature maps are saved to `yolov5-face/feature_visualization/`.
 
-## Make predictions
+## Inference
 
 Use can also use yolov5-face/detect_face.py to detect faces and landmarks on an image by providing image size, the path to weights and image.
 
