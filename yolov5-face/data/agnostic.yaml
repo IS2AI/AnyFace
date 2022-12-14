@@ -1,0 +1,16 @@
+# train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
+# train: ['/workspace/datasets/animal/train/images/', '/workspace/datasets/widerface/train/images/', '/workspace/datasets/icartoon/train/images/', '/workspace/datasets/tfw/train/images/']
+# val: ['/workspace/datasets/animal/val/images/', '/workspace/datasets/widerface/val/images/', '/workspace/datasets/icartoon/val/images/', '/workspace/datasets/tfw/val/images/']
+
+train: ['/workspace/dataset/icartoon/train/images/', '/workspace/dataset/widerface/train/images/', '/workspace/dataset/animalweb/train/images/', '/workspace/dataset/tfw/train/images/']
+val: ['/workspace/dataset/icartoon/val/images/', '/workspace/dataset/widerface/val/images/', '/workspace/dataset/animalweb/val/images/', '/workspace/dataset/tfw/val/images/']
+
+# train: ['/workspace/datasets/animal/train/images/', '/workspace/datasets/tfw/train/images/']
+# val: ['/workspace/datasets/animal/val/images/',  '/workspace/datasets/tfw/val/images/']
+
+
+# number of classes
+nc: 1
+
+# class names
+names: [ 'face']
