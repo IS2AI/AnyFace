@@ -8,7 +8,7 @@
 Clone the repository and install the necessary packages:
 
 ```bash
-git clone https://github.com/gnfm/AnyFace.git
+git clone https://github.com/IS2AI/AnyFace.git
 cd AnyFace
 pip install -r requirements.txt
 ```
