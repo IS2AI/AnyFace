@@ -3,9 +3,12 @@
 # AnyFace: A Data-Centric Approach For Input-Agnostic Face Detection 
 <img src="https://github.com/IS2AI/AnyFace/blob/main/anyface_detections.png?raw=true">
 
+## Paper
+The preprint version can be found [here](https://www.techrxiv.org/articles/preprint/AnyFace_A_Data-Centric_Approach_For_Input-Agnostic_Face_Detection/21656993). The reviewed version will be published soon after a conference.
+
 ## Installation requirements
 
-Clone the repository and install the necessary packages:
+Clone the repository and install all necessary packages:
 
 ```bash
 git clone https://github.com/IS2AI/AnyFace.git
@@ -15,22 +18,22 @@ pip install -r requirements.txt
 
 ## Datasets
 
-### Datasets used for training, validation, and testing the models
+### The following datasets were used to train, validate, and test the models
 
-Download the datasets from the following links and rename the folders accordingly.
+Download them from the following links and rename their folders accordingly.
 
-| Dataset Name | Link | Folder Name |
+| Dataset | Link | Folder Name |
 | --- | --- | --- |
 | Wider Face | http://shuoyang1213.me/WIDERFACE/ | widerface |
 | AnimalWeb | https://fdmaproject.wordpress.com/author/fdmaproject/ | animalweb |
 | iCartoonFace | https://github.com/luxiangju-PersonAI/iCartoonFace#dataset | icartoon |
 | TFW | https://github.com/IS2AI/TFW#downloading-the-dataset | tfw |
 
-### Additional datasets used for testing
+### Additional datasets
 
-Download the datasets from the following links into the `original-external/` directory. Then, rename the folders, as shown in the table.
+The following datasets were used to test the best model in addition to the test set of the main dataset. You should download them from the following links into the `original-external/` directory. Then, rename the folders as shown in the table.
 
-| Dataset Name | Link | Folder Name |
+| Dataset | Link | Folder Name |
 | --- | --- | --- |
 | Oxford-IIIT Pet Dataset | https://www.robots.ox.ac.uk/vgg/data/pets/ | pets |
 | CUB-200-2011 | https://www.kaggle.com/datasets/veeralakrishna/200-bird-species-with-11788-images | birds |
@@ -41,9 +44,9 @@ Download the datasets from the following links into the `original-external/` dir
 | Tom & Jerry's Faces | https://www.kaggle.com/datasets/boltuzamaki/tom-and-jerrys-face-detection-dateset | tj |
 | Labeled Fishes in the Wild Dataset | https://swfscdata.nmfs.noaa.gov/labeled-fishes-in-the-wild/ | fishes |
 
-## Pre-process the datasets
+## Preprocessing Step
 
-Use notebooks n the main directory to pre-process the corresponding datasets.
+Use notebooks in the main directory to pre-process the corresponding datasets.
 
 The preprocessed datasets are saved in `dataset/` directory. For each dataset, images are stored in `dataset/<dataset_name>/images/` and the corresponding labels are stored in `dataset/dataset_name/labels/` and in `dataset/<dataset_name>/labels_eval/`. Labels are saved in `.txt` files, where each `.txt` file has the same filename as corresponding image. Two labeling formats are used:
 
@@ -61,20 +64,20 @@ Annotations in `dataset/dataset_name/labels_eval/` follow the format used for [O
 
 To make a random selection of 160 images from each external dataset, run the cells in [external_selection.ipynb](external_selection.ipynb). Selected images for each dataset are in `selected-external/<dataset_name>/` directory.
 
-## Training
+## Training Step
 
 Run the following command to train the YOLOv5Face model on WIDER Face, AnimalWeb, iCartoonFace and TFW datasets. The paths to these datasets are specified in the [yolov5-face/data/agnostic.yaml](yolov5-face/data/agnostic.yaml) file. The model type is selected by `--cfg models/yolov5l6.yaml`. The weights are randomly initialized `--weights ''`. However, pre-trained weights can be also used by providing an appropriate path. We used default hyperparameters inside [yolov5-face/data/hyp.scratch.yaml](yolov5-face/data/hyp.scratch.yaml). They can be changed by providing a path to `--hyp` argument. The full list of arguments is in [yolov5-face/train.py](yolov5-face/train.py).
 
 ```bash
 cd yolov5-face
-CUDA_VISIBLE_DEVICES="0,1" python3 train.py --data data/agnostic.yaml --cfg models/yolov5l6.yaml --weights '' --workers 32 --name 'exp1' --batch-size 128 --epochs 350
+CUDA_VISIBLE_DEVICES="0,1" python train.py --data data/agnostic.yaml --cfg models/yolov5l6.yaml --weights '' --workers 32 --name 'exp1' --batch-size 128 --epochs 350
 ```
 
 The trained model is saved in `yolov5-face/runs/train/<exp_name>/weights/` directory.
 
 For more information about training details, please refer to the [YOLOv5](https://github.com/ultralytics/yolov5) and [YOLOv5-face](https://github.com/deepcam-cn/yolov5-face) repository.
 
-## Testing
+## Testing Step
 
 To get the predictions on the validation and test sets of the main datasets, run the [yolov5-face/evaluate.ipynb](yolov5-face/evaluate.ipynb) notebook. For the external datasets, use [yolov5-face/evaluate-external.ipynb](yolov5-face/evaluate-external.ipynb). These notebooks create detection .txt files in Object-Detection-Metrics format: `face confidence_score x_left y_top width height`. (The coordinates are not normalized)
 
@@ -121,41 +124,22 @@ To visualize CNN layers of the model for a given input image, you can use `featu
 
 ## Inference
 
-Use can also use yolov5-face/detect_face.py to detect faces and landmarks on an image by providing image size, the path to weights and image.
+Download the most accurate model, YOLOv5l6, from [Google Drive](https://drive.google.com/file/d/1PuITYKZbpo6fFMX6mExN-sq_z54iWyDJ/view?usp=share_link) and save it in `yolov5-face/weights` directory. Then, run `yolov5-face/detect_face.py` to detect faces and facial landmarks on an image by providing image size, the path to weights and image.
 
 ```bash
-python detect_face.py --weights anyface_weights/yolov5l6_best.pt  --source woman-and-her-dog.jpg --img-size 800
+python detect_face.py --weights weights/yolov5l6_best.pt  --source image_path --img-size 800
 ```
 
-## Models and Results
-
-**Validation Set**
-
-| Model | WF-easy | WF-medium | WF-hard | TFW Indoor | TFW Outdoor | AnimalWeb | iCartoonFace |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| YOLOv5n | 92.1 | 89.6 | 76.7 | 100 | 98.16 | 94.66 | 86.04 |
-| YOLOv5n6 | 93.5 | 90.7 | 76.3 | 100 | 98.36 | 95.17 | 88.13 |
-| YOLOv5s | 93.8 | 91.7 | 79.9 | 100 | 98.56 | 95.25 | 87.6 |
-| YOLOv5s6 | 94.5 | 92.2 | 79.7 | 100 | 98.72 | 95.7 | 89.24 |
-| YOLOv5m | 95.2 | 93.4 | 83.2 | 100 | 98.79 | 95.8 | 89.85 |
-| YOLOv5m6 | 95.9 | 93.8 | 82.8 | 100 | 99.09 | 96.28 | 90.24 |
-| YOLOv5l | 95.8 | 93.8 | 84.9 | 100 | 99.19 | 96.17 | 90.31 |
-| YOLOv5l6 | 96.1 | 94.2 | 84.1 | 100 | 99.20 | 96.26 | 90.61 |
-
-**Testing Set**
-
-| Model | TFW Indoor | TFW Outdoor | AnimalWeb | iCartoonFace |
-| --- | --- | --- | --- | --- |
-| YOLOv5n | 76.26 | 83.86 | 57.31 | 60.56 |
-| YOLOv5n6 | 100 | 99.3 | 91.94 | 89.44 |
-| YOLOv5s | 100 | 99.36 | 91.58 | 89.5 |
-| YOLOv5s6 | 100 | 99.53 | 92.83 | 90.25 |
-| YOLOv5m | 100 | 99.52 | 93.12 | 90.86 |
-| YOLOv5m6 | 100 | 99.42 | 93.72 | 91.3 |
-| YOLOv5l | 100 | 99.5 | 93.59 | 91.24 |
-| YOLOv5l6 | 100 | 99.47 | 93.59 | 91.65 |
-
-The most accurate model, YOLOv5l6, can be downloaded from [here](https://www.dropbox.com/s/kvxjjpgiowvy40g/AnyFace.pt?dl=0).
+## In case of using our work in your research, please cite this paper
+```
+@article{Kuzdeuov2022, 
+author = "Askat Kuzdeuov and Darina Koishigarina and Hüseyin Atakan Varol", 
+title = "{AnyFace: A Data-Centric Approach For Input-Agnostic Face Detection}", 
+year = "2022", 
+month = "12", 
+url = "https://www.techrxiv.org/articles/preprint/AnyFace_A_Data-Centric_Approach_For_Input-Agnostic_Face_Detection/21656993", 
+doi = "10.36227/techrxiv.21656993.v1" } 
+```
 
 ## References
 
