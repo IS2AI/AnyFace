@@ -21,37 +21,35 @@ Download the datasets from the following links and rename the folders accordingl
 
 | Dataset Name | Link | Folder Name |
 | --- | --- | --- |
-| WIDER face | http://shuoyang1213.me/WIDERFACE/ | widerface |
+| Wider Face | http://shuoyang1213.me/WIDERFACE/ | widerface |
 | AnimalWeb | https://fdmaproject.wordpress.com/author/fdmaproject/ | animalweb |
 | iCartoonFace | https://github.com/luxiangju-PersonAI/iCartoonFace#dataset | icartoon |
-| TFW | https://github.com/IS2AI/TFW#downloading-the-dataset | TFW |
+| TFW | https://github.com/IS2AI/TFW#downloading-the-dataset | tfw |
 
-### External datasets used for testing
+### Additional datasets used for testing
 
 Download the datasets from the following links into the `original-external/` directory. Then, rename the folders, as shown in the table.
 
 | Dataset Name | Link | Folder Name |
 | --- | --- | --- |
-| The Oxford-IIIT Pet Dataset | https://www.robots.ox.ac.uk/vgg/data/pets/ | pets |
+| Oxford-IIIT Pet Dataset | https://www.robots.ox.ac.uk/vgg/data/pets/ | pets |
 | CUB-200-2011 | https://www.kaggle.com/datasets/veeralakrishna/200-bird-species-with-11788-images | birds |
-| Artistic-Faces Dataset | https://faculty.runi.ac.il/arik/site/foa/artistic-faces-dataset.asp | artisticfaces |
-| MetFaces Dataset | https://github.com/NVlabs/metfaces-dataset | metfaces |
-| Sea Turtle Face Detection | https://www.kaggle.com/datasets/smaranjitghose/sea-turtle-face-detection | turtles |
+| Artistic-Faces| https://faculty.runi.ac.il/arik/site/foa/artistic-faces-dataset.asp | artisticfaces |
+| MetFaces | https://github.com/NVlabs/metfaces-dataset | metfaces |
+| Sea Turtle Faces | https://www.kaggle.com/datasets/smaranjitghose/sea-turtle-face-detection | turtles |
 | Anime-Face-Detector | https://github.com/qhgz2013/anime-face-detector | animefaces |
-| Tom and Jerry’s face detection dataset | https://www.kaggle.com/datasets/boltuzamaki/tom-and-jerrys-face-detection-dateset | tj |
-| The Labeled Fishes in the Wild Dataset | https://swfscdata.nmfs.noaa.gov/labeled-fishes-in-the-wild/ | fishes |
+| Tom & Jerry's Faces | https://www.kaggle.com/datasets/boltuzamaki/tom-and-jerrys-face-detection-dateset | tj |
+| Labeled Fishes in the Wild Dataset | https://swfscdata.nmfs.noaa.gov/labeled-fishes-in-the-wild/ | fishes |
 
 ## Pre-process the datasets
 
-Use dataset pre-processing notebooks located in the main directory to pre-process corresponding datasets.
+Use notebooks n the main directory to pre-process the corresponding datasets.
 
-The preprocessed datasets are saved in `dataset/` directory. For each dataset, images are stored in `dataset/<dataset_name>/images/` and the corresponding labels are stored in `dataset/dataset_name/labels/` and in `dataset/<dataset_name>/labels_eval/`. Labels are saved in .txt files, where each .txt file has the same filename as corresponding image. Two labeling formats are used:
+The preprocessed datasets are saved in `dataset/` directory. For each dataset, images are stored in `dataset/<dataset_name>/images/` and the corresponding labels are stored in `dataset/dataset_name/labels/` and in `dataset/<dataset_name>/labels_eval/`. Labels are saved in `.txt` files, where each `.txt` file has the same filename as corresponding image. Two labeling formats are used:
 
 Annotations in `dataset/<dataset_name>/labels/` follow the format used for training YOLOv5Face models:
-
-- each row contains labels of one face
-- the format: `face x_center y_center width height x1 y1 x2 y2 x3 y3 x4 y4 x5 y5`
-- x1, y1, … correspond to the left eye, right eye, nose top, left mouth corner, right mouth corner landmarks
+- `face x_center y_center width height x1 y1 x2 y2 x3 y3 x4 y4 x5 y5`
+- `x1,y1,...,x5,y5` correspond to the coordinates of the left eye, right eye, nose top, left mouth corner, and right mouth corner
 - all coordinates are normalized to values [0-1]
 - for faces without annotated landmarks, -1 is used instead of coordinates
 
@@ -126,7 +124,7 @@ To visualize CNN layers of the model for a given input image, you can use `featu
 Use can also use yolov5-face/detect_face.py to detect faces and landmarks on an image by providing image size, the path to weights and image.
 
 ```bash
-python detect_face.py --weights path_to_weights --image path_to_image --img-size 800
+python detect_face.py --weights anyface_weights/yolov5l6_best.pt  --source woman-and-her-dog.jpg --img-size 800
 ```
 
 ## Models and Results
