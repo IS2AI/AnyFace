@@ -6,6 +6,8 @@
 ## Paper
 The preprint version can be found [here](https://www.techrxiv.org/articles/preprint/AnyFace_A_Data-Centric_Approach_For_Input-Agnostic_Face_Detection/21656993). The reviewed version will be published soon after a conference.
 
+## Online Demo Page https://issai.nu.edu.kz/anyface/ 
+
 ## Installation requirements
 
 Clone the repository and install all necessary packages:
