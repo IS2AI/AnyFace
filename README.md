@@ -3,8 +3,7 @@
 # AnyFace: A Data-Centric Approach For Input-Agnostic Face Detection 
 <img src="https://github.com/IS2AI/AnyFace/blob/main/anyface_detections.png?raw=true">
 
-## Paper
-The preprint version can be found [here](https://www.techrxiv.org/articles/preprint/AnyFace_A_Data-Centric_Approach_For_Input-Agnostic_Face_Detection/21656993). The reviewed version will be published soon after a conference.
+## Preprint on TechRxiv: [AnyFace: A Data-Centric Approach For Input-Agnostic Face Detection](https://www.techrxiv.org/articles/preprint/AnyFace_A_Data-Centric_Approach_For_Input-Agnostic_Face_Detection/21656993)
 
 ## Online Demo Page https://issai.nu.edu.kz/anyface/ 
 
