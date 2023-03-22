@@ -133,13 +133,15 @@ python detect_face.py --weights weights/yolov5l6_best.pt  --source image_path --
 
 ## In case of using our work in your research, please cite this paper
 ```
-@article{Kuzdeuov2022, 
-author = "Askat Kuzdeuov and Darina Koishigarina and Hüseyin Atakan Varol", 
-title = "{AnyFace: A Data-Centric Approach For Input-Agnostic Face Detection}", 
-year = "2022", 
-month = "12", 
-url = "https://www.techrxiv.org/articles/preprint/AnyFace_A_Data-Centric_Approach_For_Input-Agnostic_Face_Detection/21656993", 
-doi = "10.36227/techrxiv.21656993.v1" } 
+@INPROCEEDINGS{10066796,
+  author={Kuzdeuov, Askat and Koishigarina, Darina and Varol, Huseyin Atakan},
+  booktitle={2023 IEEE International Conference on Big Data and Smart Computing (BigComp)}, 
+  title={AnyFace: A Data-Centric Approach For Input-Agnostic Face Detection}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={211-218},
+  doi={10.1109/BigComp57234.2023.00042}}
 ```
 
 ## References
